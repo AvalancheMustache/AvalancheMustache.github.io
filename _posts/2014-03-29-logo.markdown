@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "Ecce logo!"
+date:   2014-03-29 17:20:00
+categories: logo
+author: "Matteo Ragni"
+---
+
+# Presentazione del logo
+
+Ed ecco qua in anteprima assoluta il logo, completamente vettoriale, del progetto. 
+<img src="/assets/avalanchemustache_logo.png" alt="Avalanche Mustache Logo" style="width: 30%" onclick="imageZoom(this, '30%')">
+
+Spero che piaccia! 
+
+Di seguito i link per poter scaricare le due versioni:
+
+ * [png version][logo_png]
+ * [vectorial version][logo_svg]
+ 
+ [logo_png]: /assets/avalanchemustache_logo.png
+ [logo_svg]: /assets/avalanchemustache_logoV.svg
+ 

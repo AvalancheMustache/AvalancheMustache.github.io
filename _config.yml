@@ -1,0 +1,7 @@
+name: Avalanche Mustache - Development Blog
+markdown: kramdown
+pygments: true
+encoding: utf-8
+
+kramdown:
+    input: GFM
