@@ -177,3 +177,12 @@ code, pre {
     color: #aaa;
     font-size: 80%;
 }
+
+/***********/
+/* SHARING */
+/***********/
+
+.sharing {
+    width: 100%;
+    text-align: right;
+}
