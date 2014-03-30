@@ -8,7 +8,17 @@ title: Avalanche Mustache Development Blog
     <hr>
     <ul class="posts">
         {% for post in site.posts %}
-            <a href="{{ post.url }}"><li>{{ post.title }} inserito il {{ post.date | date_to_string }}, di {{ post.author }}</li></a>
+            <a href="{{ post.url }}">
+                <li>
+                    <span class="post-title">{{ post.title }}</span>
+                    <hr>
+                    <span class="post-info">inserito il {{ post.date | date_to_string }}, di {{ post.author }}</span>
+                     :: 
+                    {% for tag in post.categories %}
+                       <span class="label label-default">{{ tag }}</span> 
+                    {% endfor %}
+                </li>
+            </a>
         {% endfor %}
     </ul>
 </div>

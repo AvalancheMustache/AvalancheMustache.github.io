@@ -9,6 +9,11 @@ function imageZoom_old(obj, initial) {
     }
 }
 
+function colorTransition(obj, _color) {
+    'use strict';
+    $(obj).animate( {color: _color; }, 500);
+}
+
 
 function imageZoom(obj, initial) {
     'use strict';

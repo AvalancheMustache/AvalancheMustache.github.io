@@ -2,7 +2,13 @@
 layout: default
 ---
 <h1 class="post-title">{{ page.title }}</h1>
-<p class="meta">{{ page.date | date_to_string }} - Scritto da {{ page.author }}</p>
+<p class="meta">
+    {{ page.date | date_to_string }} - Scritto da {{ page.author }}     
+    :: 
+    {% for tag in page.categories %}
+       <span class="label label-default">{{ tag }}</span> 
+    {% endfor %}
+</p>
 
 <hr>
 
