@@ -10,7 +10,7 @@ comment_id: "20140329170000"
 
 # Contenuti
 
-{:no_toc}
+{:.no_toc}
 
  * Tabella contenuti
  {:toc}
