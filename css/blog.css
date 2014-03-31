@@ -196,3 +196,25 @@ code, pre {
     width: 100%;
     text-align: right;
 }
+
+/************/
+/* CONTACTS */
+/************/
+
+.contact-li {
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 110px;
+}
+
+.contact-info {
+    padding-right: 120px;
+}
+
+.post-info {
+    transition: color 0.5s linear;
+}
+
+.post-info:hover {
+    color: #fff;
+}

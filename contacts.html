@@ -1,0 +1,63 @@
+---
+layout: default
+title: Avalanche Mustache Development Blog
+team:
+ - { name: "Matteo", surname: "Ragni", email: "matteo.ragni@studetni.unitn.it", site: "it.linkedin.com/in/matteoragni/", photo-src: "https://media.licdn.com/mpr/mpr/shrink_200_200/p/2/005/01b/0be/03d6bde.jpg" }
+ - { name: "Ermes", surname: "Floriani", email: "ermes.floriani@studenti.unitn.it", site: "", photo-src: ""}
+bosses: 
+ - { name: "Paolo", surname: "Bosetti", email: "", site: "", photo-src: ""}
+ - { name: "Francesco", surname: "Biral", email: "", site: "", photo-src: ""}
+---
+
+<div id="home">
+    <h1>Contatti</h1>
+    <hr>
+    <h2>Team</h2>
+    <ul class="posts">
+        {% for t in page.team %}
+            <li class="contact-li" id="{{t.name}}" style="background-image: url('{{t.photo-src}}');">
+                <div class="contact-info">
+                    <span class="post-title">{{ t.name }} {{ t.surname }}</span>
+                    <hr>
+                    {% if t.email != '' %}
+                    <a href="mailto:{{ t.email }}/?subject=%5BAvalanche%20Mustache%5D" target="_blank" class="contact-link">
+                        <span class="glyphicon glyphicon-send"> 
+                        </span> <span class="post-info">Contatta per mail</span>
+                    </a> 
+                    {% endif %} 
+                    <br>
+                    {% if t.site != '' %}
+                    <a href="http://{{ t.site }}" target="_blank" class="contact-link">
+                        <span class="glyphicon glyphicon-globe">
+                        </span> <span class="post-info">Visita sito web</span>
+                    </a> 
+                    {% endif %}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>Bosses</h2>
+    <ul class="posts">
+        {% for t in page.bosses %}
+            <li class="contact-li" id="{{t.name}}" style="background-image: url('{{t.photo-src}}');">
+                <div class="contact-info">
+                    <span class="post-title">{{ t.name }} {{ t.surname }}</span>
+                    <hr>
+                    {% if t.email != '' %}
+                    <a href="mailto:{{ t.email }}/?subject=%5BAvalanche%20Mustache%5D" target="_blank" class="contact-link">
+                        <span class="glyphicon glyphicon-send"> 
+                        </span> <span class="post-info">Contatta per mail</span>
+                    </a> 
+                    {% endif %} 
+                    <br>
+                    {% if t.site != '' %}
+                    <a href="http://{{ t.site }}" target="_blank" class="contact-link">
+                        <span class="glyphicon glyphicon-globe">
+                        </span> <span class="post-info">Visita sito web</span>
+                    </a> 
+                    {% endif %}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
