@@ -10,6 +10,7 @@ comment_id: "20140329105000"
 
 # Benvenuto
 {:.no_toc}
+
 E finalmente il primo post nel nostro nuovissimo blog di sviluppo per il drone `Avalanche Mustache`.
 
 ## Contenuti
