@@ -76,6 +76,10 @@ $$
 \end{equation}
 $$
 
+### E un esempio?
+
+Un esempio di un post? [Dai uno sguardo al sorgente di questa pagina qui][sorgente]!
+
 Buon divertimento!
 
 P.S. Il sito è completamente **vettoriale**!
@@ -83,3 +87,4 @@ P.S. Il sito è completamente **vettoriale**!
 [markdown]: http://daringfireball.net/projects/markdown/syntax
 [kramdown]: http://kramdown.gettalong.org/
 [jekyll]: http://jekyllrb.com
+[sorgente]: https://raw.githubusercontent.com/AvalancheMustache/AvalancheMustache.github.io/master/_posts/2014-03-29-il-primo-post.markdown
