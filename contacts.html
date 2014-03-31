@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Avalanche Mustache Development Blog
+userplaceholder: "/assets/struct/user.png"
 team:
  - { name: "Matteo", surname: "Ragni", email: "matteo.ragni@studetni.unitn.it", site: "it.linkedin.com/in/matteoragni/", photo-src: "https://media.licdn.com/mpr/mpr/shrink_200_200/p/2/005/01b/0be/03d6bde.jpg" }
  - { name: "Ermes", surname: "Floriani", email: "ermes.floriani@studenti.unitn.it", site: "", photo-src: ""}
@@ -15,7 +16,11 @@ bosses:
     <h2>Team</h2>
     <ul class="posts">
         {% for t in page.team %}
+            {% if t.photo-src != ''  %}
             <li class="contact-li" id="{{t.name}}" style="background-image: url('{{t.photo-src}}');">
+            {% else %}
+            <li class="contact-li" id="{{t.name}}" style="background-image: url('{{page.userplaceholder}}');">
+            {% endif %}
                 <div class="contact-info">
                     <span class="post-title">{{ t.name }} {{ t.surname }}</span>
                     <hr>
@@ -39,7 +44,11 @@ bosses:
     <h2>Bosses</h2>
     <ul class="posts">
         {% for t in page.bosses %}
+            {% if t.photo-src != ''  %}
             <li class="contact-li" id="{{t.name}}" style="background-image: url('{{t.photo-src}}');">
+            {% else %}
+            <li class="contact-li" id="{{t.name}}" style="background-image: url('{{page.userplaceholder}}');">
+            {% endif %}
                 <div class="contact-info">
                     <span class="post-title">{{ t.name }} {{ t.surname }}</span>
                     <hr>

@@ -212,7 +212,8 @@ code, pre {
 }
 
 .post-info {
-    transition: color 0.5s linear;
+    transition: color 0.25s linear;
+    margin-left: 5px;
 }
 
 .post-info:hover {
