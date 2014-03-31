@@ -24,7 +24,7 @@ Un nuovo post deve essere salvato secondo la convenzione `YYYY-MM-DD-titolo-del-
 ### Front-matter
 
 Il front-matter è una piccola sezione iniziale per la pagina, caratterizzato da delle variabili indispensabili per l'interprete. Ad esempio, ecco il front-matter di questo post:
-{% highlight %}
+{% highlight xml %}
 ---
 layout: post
 title:  "Come creare un post"
@@ -83,7 +83,11 @@ git push -u origin master
 {% endhighlight %}
 `git` chiederà nome utente e password.
 
-**Fine!**
+### Modificare un post
+
+Prima di modificare un post, assicurarsi di aggiornare il repo.
+
+In seguito modificare il file relativo al post che si desidera variare, e eseguire nuovamente i passaggi `add`, `commit` e `push` come descritti al punto precedente.
 
   [post1]: http://localhost:4000/jekyll/welcome/latex/code/2014/03/29/il-primo-post.html
   [post2]: https://raw.githubusercontent.com/AvalancheMustache/AvalancheMustache.github.io/master/_posts/2014-03-29-il-primo-post.markdown
