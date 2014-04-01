@@ -18,6 +18,8 @@ Di seguito, un form con qualche domanda che ci permetterà di costruire quella c
 
 **Se non sei un soccorritore addestrato, per favore non rispondere a queste domande. Se non sei un soccorritore alpino ma sei comunque addestrato nella ricerca o in operazioni di recupero con qualsiasi altro corpo/associazione, non esitare a rispondere**
 
+Confidiamo nella intelligenza delle persone...
+
 _Il questionario è completamente anonimo, su piattaforma Google Drive._
 
 In fondo alla pagina trovate i commenti. Siate liberi di lasciarci un **feedback** sul questionario, in modo che possa essere migliorato/affinato.
@@ -37,7 +39,7 @@ Non abbiate paura di condividere questo questionario con altri soccorritori o pe
     text-align: center;
 }
 
-iframe {
+.iframe-google {
     width: 95%;
     height: 750px;
     margin: 5px;
@@ -48,7 +50,7 @@ iframe {
 </style>
 
 <div class="iframe-div">
-    <iframe src="http://docs.google.com/forms/d/1H7rHbB6h1ubsUsPQx8HfK6ZDed06bpzerJIBpbgcQdY/viewform?embedded=true" frameborder="0">Caricamento in corso...</iframe>
+    <iframe class="iframe-google" src="http://docs.google.com/forms/d/1H7rHbB6h1ubsUsPQx8HfK6ZDed06bpzerJIBpbgcQdY/viewform?embedded=true" frameborder="0">Caricamento in corso...</iframe>
 </div>
 
 ## Grazie! 
