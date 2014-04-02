@@ -1,0 +1,101 @@
+#editor-form {
+    text-align: center;
+}
+    
+.input-text {
+    background-color: #444;
+    border: 1px solid #111;
+    border-radius: 5px;
+    padding: 5px;
+    color: #fff;
+    transition: box-shadow 0.5s linear;
+    box-shadow: 0px 0px 1px 1px transparent;
+    margin: 5px;
+}
+    
+.input-text:hover {
+    box-shadow: 0px 0px 1px 1px #555;
+    outline: 0px;
+}
+
+.input-text:focus {
+    box-shadow: 0px 0px 1px 1px #fff;
+    outline: 0px;
+}
+
+.input-text[placeholder] {
+    color: #eee;
+}
+    
+.chk-label {
+    background-color: #444;
+    border: 1px solid #111;
+    border-radius: 5px;
+    padding: 5px;
+    color: #eee;
+    font-weight: normal;
+    font-size: 14px;
+}
+    
+/* Editor buttons */
+    
+.editor-buttons a {
+    border-radius: 3px;
+    border: 1px solid #111;
+    color: #eee;
+    background-color: #333;
+    width: 100px;
+    padding: 5px;
+    cursor: default;
+}
+
+/* Multicontrol */
+    
+.left-input {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-right: 0px;
+}
+.right-input {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin-left: 0px;
+}
+    
+.center-input {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+    
+/* styling for username and password fields */
+    
+#username, #password { 
+    width: 45%
+} 
+
+#title {
+    width: 90%;
+}
+
+#tags {
+    width: 60%
+}
+    
+#title, #title[placeholder] {
+    font-weight: bold;
+    font-size: 16px;
+}
+    
+.chk-label {
+    width: 15%;
+}
+    
+#post-text {
+    font-family: "Source Code Pro", Menlo, Monaco, Consolas, "Courier New", monospace;
+    width: 90%;
+    height: 400px;
+}

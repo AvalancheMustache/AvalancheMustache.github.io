@@ -1,0 +1,42 @@
+---
+layout: default
+title: Editor
+---
+
+<link href="/editor/editor.css" rel="stylesheet">
+<script src="/editor/editor.js"></script>
+<script>
+
+</script>
+
+<div class="editor">
+    <form class="form-controls" id="editor-form">
+        <h1>Post Editor</h1>
+        <h3>Github login</h3>
+        <input id="username" oninput="$('#author').attr('value', $(this).val())" class="input-text left-input" type="text" placeholder="Github Username">
+        <input id="password" class="input-text right-input" type="password" placeholder="Github Password">
+        
+        <hr>
+        <h3>Impostazione front-matter</h3>
+        <input id="title" class="input-text" type="text" placeholder="Titolo"><br>
+        
+        <input id="tags" class="input-text left-input" type="text" placeholder="Tags, separati da [spazio]">
+        <label class="chk-label center-input" for="id_chk_comments"  onclick="clickCheckbox(this)">Commenti</label>
+        <input class="input-checkbox" id="id_chk_comments" type="checkbox" checked="true" hidden="true">
+        <label class="chk-label right-input"  for="id_chk_TOC" onclick="clickCheckbox(this)">TOC</label>
+        <input class="input-checkbox" type="checkbox" id="id_chk_TOC" hidden="true">
+        
+        <hr>
+        <h3>Testo del post</h3>
+        
+        {% include ../editor/editing_box.html %}
+        
+        <textarea id="post-text" class="input-text" placeholder="Inserisci qui il testo del post in markdown"></textarea>
+        
+        <!-- HIDDEN ELEMENTS -->
+        <input type="text" id="layout" hidden="true">
+        <input type="text" id="date-complete" hidden="true">
+        <input type="text" id="author" hidden="true">
+        <input type="text" id="comment_id" hidden="true">
+    </form>
+</div>
