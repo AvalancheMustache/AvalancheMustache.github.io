@@ -1,0 +1,162 @@
+<!-- EDITOR BUTTON -->
+<style>
+
+.editor-button-div {
+    cursor: default;
+    background-color: #444;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 3px #111;
+    width: 90%;
+    margin: auto;
+}
+    
+.editor-button {
+    border-radius: 3px;
+    border: 1px solid #111;
+    color: #eee;
+    background-color: #333;
+    width: 60px;
+    padding: 3px;
+    cursor: default;
+    transition: color 0.5s linear;
+    transition: background-color 0.5s linear;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 3px;
+    outline: 0px transparent;
+}
+    
+.editor-button:hover {
+    color: #fff;
+    background-color: #555;
+}
+    
+    
+
+</style>
+<script>
+    function wrapText(elementID, openTag, closeTag, preString, postString) {
+        var textArea = $('#' + elementID);
+        var len = textArea.val().length;
+        var start = textArea[0].selectionStart;
+        console.log(start);
+        var end = textArea[0].selectionEnd;
+        console.log(end);
+        var selectedText = textArea.val().substring(start, end);
+        console.log(selectedText);
+        var replacement = openTag + selectedText + closeTag;
+        textArea.val(textArea.val().substring(0, start) + preString + replacement + postString + textArea.val().substring(end, len));
+        textArea[0].selectionStart =  start + openTag.length;
+        textArea[0].selectionEnd = start + (openTag.length + preString.length);
+        textArea.focus();
+    }
+
+    function openHighlights(code, linenos) {
+        return '\n{' + '%' + ' highlights ' + code + ' ' + linenos +' %' + '}';
+    }
+    function closeHighlights() {
+        return '\n{' + '%' + ' endhighlights ' +'%' + '}\n';
+    }
+
+    function ed_bold() {
+        wrapText("post-text","**","**","","");  
+    };
+
+    function ed_italic() {
+        wrapText("post-text","_","_","","","");  
+    };
+
+    function ed_URL() {
+        var url = prompt("Inserire URL");
+        wrapText("post-text","[","]","","["+url+"]");  
+    }
+
+    function ed_quote() {
+        wrapText("post-text","> ","","\n","");  
+    }
+
+    function ed_codeinline() {
+        wrapText("post-text","`","`","","");  
+    }
+
+    function ed_code() {
+        var code = prompt("Quale linguaggio?");
+        var linenos = confirm("Inserire i numeri di linea") ? 'linenos' : '';
+        wrapText("post-text","\n","\n",openHighlights(code, linenos),closeHighlights());  
+    }
+
+    function ed_listN() {
+        wrapText("post-text"," * ","\n ","\n","");  
+    }
+
+    function ed_listN() {
+        wrapText("post-text"," 1. ","\n ","\n","");  
+    }
+    
+    function ed_h(n) {
+        var head = "";
+        for (var i = 0; i < n; i++) head = head + "#";
+        wrapText("post-text",head + ' ',"\n","","");  
+    }
+    
+    function ed_eqinline() {
+        wrapText("post-text"," $$ "," $$ ","","");  
+    }
+    
+    function ed_eqblk() {
+        wrapText("post-text"," $$\n\\begin{equation}\n\t","\n\\end{equation}\n$$ ","\n","\n");  
+    }
+
+</script>
+<div class="editor-button-div">
+    <button id="id_bold" type="button"
+            class="editor-button" title="Grassetto"
+            onclick="ed_bold()"><i class="fa fa-bold"></i></button>
+    <button id="id_italic"  type="button"
+            class="editor-button" title="Corsivo"
+            onclick="ed_italic()"><i class="fa fa-italic"></i></button>
+    <button id="id_URL"   type="button"
+            class="editor-button" title="Inserisci link"
+            onclick="ed_URL()"><i class="fa fa-chain"></i></button>
+    <button id="id_quote"   type="button"
+            class="editor-button" title="Inserisci citazione"
+            onclick="ed_quote()"><i class="fa fa-quote-right"></i></button>
+    <button id="id_codeinline"   type="button"
+            class="editor-button" title="Inserisci codice inline"
+            onclick="ed_codeinline()"><i class="fa fa-code"></i> ln</button>
+    <button id="id_code"   type="button"
+            class="editor-button" title="Inserisci blocco di codice"
+            onclick="ed_code()"><i class="fa fa-code"></i> blk</button>
+    <button id="id_listN"   type="button"
+            class="editor-button" title="Inserisci lista numerata"
+            onclick="ed_listN()"><i class="fa fa-list-ol"></i></button>
+    <button id="id_listB"   type="button"
+            class="editor-button" title="Inserisci elenco puntato"
+            onclick="ed_listN()"><i class="fa fa-list-ul"></i></button>
+    <button id="id_h1"   type="button"
+            class="editor-button"  title="Inserisci Intestazione 1"
+            onclick="ed_h(1)"><i class="fa fa-text-height"></i> h1</button>
+    <button id="id_h2"   type="button"
+            class="editor-button" title="Inserisci Intestazione 2"
+            onclick="ed_h(2)"><i class="fa fa-text-height"></i> h2</button>
+    <button id="id_h3"   type="button"
+            class="editor-button" title="Inserisci Intestazione 3"
+            onclick="ed_h(3)"><i class="fa fa-text-height"></i> h3</button>
+    <button id="id_h4"   type="button"
+            class="editor-button" title="Inserisci Intestazione 4"
+            onclick="ed_h(4)"><i class="fa fa-text-height"></i> h4</button>
+    <button id="id_h5"   type="button"
+            class="editor-button" title="Inserisci Intestazione 5"
+            onclick="ed_h(5)"><i class="fa fa-text-height"></i> h5</button>
+    <button id="id_h6"   type="button"
+            class="editor-button" title="Inserisci Intestazione 6"
+            onclick="ed_h(6)"><i class="fa fa-text-height"></i> h6</button>
+    <button id="id_equation" type="button"
+            class="editor-button" title="Inserisci equazione in linea"
+            onclick="ed_eqinline()"><i class="fa fa-dollar"> ln</i></button>
+    <button id="id_equationblk"  
+            class="editor-button" title="Inserisci blocco equazione"
+            onclick="ed_eqblk()"><i class="fa fa-dollar"> blk</i></button>
+</div>
+<!-- -->

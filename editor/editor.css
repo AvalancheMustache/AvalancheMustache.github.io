@@ -37,18 +37,6 @@
     font-size: 14px;
 }
     
-/* Editor buttons */
-    
-.editor-buttons a {
-    border-radius: 3px;
-    border: 1px solid #111;
-    color: #eee;
-    background-color: #333;
-    width: 100px;
-    padding: 5px;
-    cursor: default;
-}
-
 /* Multicontrol */
     
 .left-input {
@@ -98,4 +86,14 @@
     font-family: "Source Code Pro", Menlo, Monaco, Consolas, "Courier New", monospace;
     width: 90%;
     height: 400px;
+}
+
+#submitGH {
+    background-color: #226eff;
+    border: 0px;
+    border-radius: 5px;
+    width: 30%;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
 }

@@ -4,32 +4,32 @@ title: Editor
 ---
 
 <link href="/editor/editor.css" rel="stylesheet">
+<script src="/editor/github-api.js"></script>
 <script src="/editor/editor.js"></script>
-<script>
-
-</script>
 
 <div class="editor">
     <form class="form-controls" id="editor-form">
-        <h1>Post Editor</h1>
-        <h3>Github login</h3>
+        <h1><i class="fa fa-wrench"></i> Post Editor</h1>
+        <h3><i class="fa fa-github"></i> Github login</h3>
         <input id="username" oninput="$('#author').attr('value', $(this).val())" class="input-text left-input" type="text" placeholder="Github Username">
         <input id="password" class="input-text right-input" type="password" placeholder="Github Password">
-        
         <hr>
-        <h3>Impostazione front-matter</h3>
-        <input id="title" class="input-text" type="text" placeholder="Titolo"><br>
         
-        <input id="tags" class="input-text left-input" type="text" placeholder="Tags, separati da [spazio]">
-        <label class="chk-label center-input" for="id_chk_comments"  onclick="clickCheckbox(this)">Commenti</label>
-        <input class="input-checkbox" id="id_chk_comments" type="checkbox" checked="true" hidden="true">
-        <label class="chk-label right-input"  for="id_chk_TOC" onclick="clickCheckbox(this)">TOC</label>
-        <input class="input-checkbox" type="checkbox" id="id_chk_TOC" hidden="true">
+        <h3 class="front-matter"><i class="fa fa-cogs"></i> Impostazione front-matter</h3>
+        <input id="title" class="input-text front-matter" type="text" placeholder="Titolo" oninput="editFileName()"><br>
         
-        <hr>
-        <h3>Testo del post</h3>
+        <input id="tags" class="input-text left-input front-matter" type="text" placeholder="Tags, separati da [spazio]">
+        <label class="chk-label center-input front-matter" 
+               for="id_chk_comments"  onclick="clickCheckbox(this)"><i class="fa fa-comments-o"></i> Commenti</label>
+        <input class="input-checkbox front-matter" id="id_chk_comments" type="checkbox" checked="true" hidden="true">
+        <label class="chk-label right-input front-matter"  
+               for="id_chk_TOC" onclick="clickCheckbox(this)"><i class="fa fa-th-list"></i> TOC</label>
+        <input class="input-checkbox front-matter" type="checkbox" id="id_chk_TOC" hidden="true">
+        <hr class="front-matter">
         
-        {% include ../editor/editing_box.html %}
+        <h3><i class="fa fa-file-text"></i> Testo del post</h3>
+        
+        {% include editing_box.html %}
         
         <textarea id="post-text" class="input-text" placeholder="Inserisci qui il testo del post in markdown"></textarea>
         
@@ -38,5 +38,11 @@ title: Editor
         <input type="text" id="date-complete" hidden="true">
         <input type="text" id="author" hidden="true">
         <input type="text" id="comment_id" hidden="true">
+        <input type="text" id="file-name" hidden="true">
+        
+        <hr>
+        <button id="submitGH" type="button"><i class="fa fa-check-circle-o"></i> Invia Post</button>
+        
+        <h3></h3>
     </form>
 </div>
