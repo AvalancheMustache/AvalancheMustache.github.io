@@ -47,6 +47,13 @@ TODO:
         <script type="text/javascript">var switchTo5x=true;</script>
         <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
         <script type="text/javascript">stLight.options({publisher: "2310989c-976e-4a21-aeae-a6d7fd185d07", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+        <script type="text/javascript">
+            jQuery(function($) {
+                if (/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())) {
+                    $('body').css('opacity', '1.0') 
+                }
+            })
+        </script>
 
     </head>
     <body>

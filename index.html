@@ -12,7 +12,7 @@ title: Avalanche Mustache Development Blog
                 <li>
                     <span class="post-title">{{ post.title }}</span>
                     <hr>
-                    <span class="post-info">inserito il {{ post.date | date_to_string }}, di {{ post.author }}</span>
+                    <span class="post-info"><i class="fa fa-calendar"></i> {{ post.date | date_to_string }}, <i class="fa fa-user"></i> {{ post.author }}</span>
                      :: 
                     {% for tag in post.categories %}
                        <span class="label label-default">{{ tag }}</span> 
