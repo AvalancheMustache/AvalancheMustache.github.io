@@ -14,11 +14,13 @@ var ownername = "MatteoRagni";
 var github_api = "https://api.github.com";
 var api_version = 'application/vnd.github.v3+json';
 
-// Implementation
+// Implementation of the BasicAuth string
 function basicAuth(usr, pass) {
     return "Basic " + btoa(usr + ':' + pass);
 }
 
+// With this function you're able to request a content from a public GitHub Repo.
+// Username and password are not requested
 function getContent(path, succ_200, succ_err, err_fnc) {
     // Creating position for the file to be read
     var apipos = github_api + '/repos/' + ownername + '/' + reponame + '/contents/' + path;
@@ -42,6 +44,8 @@ function getContent(path, succ_200, succ_err, err_fnc) {
     } );
 }
 
+// With this function you're able to update or create a file in a Github Repo
+// Username and Password are requested
 function putContent(usr, psw, path, content, sha, succ_200, succ_err, err_fnc) {
     // Creating position for the file to be edited/created
     var apipos = github_api + '/repos/' + ownername + '/' + reponame + '/contents/' + path;
@@ -61,6 +65,36 @@ function putContent(usr, psw, path, content, sha, succ_200, succ_err, err_fnc) {
         crossDomain: true,
         url: apipos,
         type: "PUT",
+        dataType: "text",
+        data: datamsg,    
+        headers: {
+            'Accept': api_version,
+            'Authorization': basicAuth(usr, psw)
+        },
+        success: function(result, status) {
+            var jsonresult = JSON.parse(result);
+            if (status === "success") {
+                succ_200(jsonresult);   
+            } else {
+                succ_err(jsonresult.message, status);
+            }
+        },
+        error: function(jqxhr, status, htmlerror) {
+            err_fnc(htmlerror, status);
+        }                      
+    });
+}
+
+// This function is used to delete some content in the repo.
+function deleteContent(usr, psw, path, sha, succ_200, succ_err, err_fnc) {
+    // Creating position for the file to be edited/created
+    var apipos = github_api + '/repos/' + ownername + '/' + reponame + '/contents/' + path;
+    var datamsg = '{ "message": ' + '"Deleted ' + path +'", "sha": "' + sha + '"}';
+        
+    $.ajax( {
+        crossDomain: true,
+        url: apipos,
+        type: "DELETE",
         dataType: "text",
         data: datamsg,    
         headers: {

@@ -5,6 +5,11 @@
 var dataobj = new Date();
 var settings;
 
+var TOCstring = '# Contenuti\n' +
+                '{:.no_toc}\n\n' +
+                ' * Tabella contenuti\n' +
+                '{:toc}';
+
 // Sistemazione del form al caricamento e al click:    
 // Questa funzione si occupa del colllegamento tra checkbox e label (un style in più diciamo)
 function fixCheck() {
@@ -84,6 +89,8 @@ $( document ).ready( function() {
         $( '#author' ).attr('value', '');
         $( '#file-name' ).attr('value', '');
         
+        $('#deleteGH').remove();
+        
     } else {    // Se nell'url c'è ?edit=nomedelpost.markdown elimina tutto il form di frontmatter
         $( '.front-matter' ).remove();
         
@@ -121,36 +128,40 @@ function generatePost() {
     if (settings.edit != "new"){
         return $('#post-text').val();
     } else {
-        return frontMatter() + '\n\n' + $('#post-text').val() + '\n\n';
+        return  frontMatter() + 
+                '\n\n' + ( $('#id_chk_TOC').is(':checked') == true ? TOCstring : '' ) +     
+                '\n\n' + $('#post-text').val() + '\n';
     }
 }
 
-function checkFunction() {
+function checkFunction(type) {
     var check = "OK";
-    if ($('#username').val() === "") {
-        $('#username').focus();
-        $( '#submitGH' ).animate( {backgroundColor: "#ff2"}, 400);
-        $( '#submitGH' ).text('<i class="fa fa-user"></i> Inserire Username!');
-        check = "username";
+    if (type === true) {
+        if ($('#title').val() === "") {
+            $('#title').focus();
+            $( '#submitGH' ).css({backgroundColor: "#ff2"});
+            $( '#submitGH' ).text('Definire un titolo!');
+            check = "title";
+        }
     }
     if ($('#password').val() === "") {
         $('#password').focus();
-        $( '#submitGH' ).animate( {backgroundColor: "#ff2"}, 400);
-        $( '#submitGH' ).text('<i class="fa fa-unlock-alt"></i> Inserire Password!');
+        $( '#submitGH' ).css({backgroundColor: "#ff2"});
+        $( '#submitGH' ).text('Inserire Password!');
         check = "password";
     }
-    if ($('#title').val() === "") {
-        $('#title').focus();
-        $( '#submitGH' ).animate( {backgroundColor: "#ff2"}, 400);
-        $( '#submitGH' ).text('<i class="fa fa-book"></i> Definire un titolo!');
-        check = "title";
+    if ($('#username').val() === "") {
+        $('#username').focus();
+        $( '#submitGH' ).css({backgroundColor: "#ff2"});
+        $( '#submitGH' ).text('Inserire Username!');
+        check = "username";
     }
     return check;
 }
     
 function postBtnClick() {
     //putContent($('#username').val(), $('#password').val(), getURI().edit, 'post-text', 'shasum', 'submitGH')
-    if (checkFunction() === "OK") {
+    if (checkFunction(true) === "OK") {
         var path;
         if (settings.folder) {
             path = settings.folder + '/';
@@ -167,20 +178,50 @@ function postBtnClick() {
         putContent($('#username').val(), $('#password').val(), path, generatePost(), $('#shasum').text(), 
                    function(result) {
                        $( '#shasum' ).text( result.sha );
-                       $( '#submitGH' ).animate( {backgroundColor: "#2f4"}, 400);
-                       $( '#submitGH' ).text('<i class="fa fa-thumbs-up"></i> Operazione completata');
+                       $( '#submitGH' ).css({backgroundColor: "#2f4"});
+                       $( '#submitGH' ).text('Operazione completata');
                    },
                     function(message, status){
                        alert("Impossibile leggere la risorsa, il server ha ritornato un errore.\nERRORE :: " 
-                             + message.message + "\nSTATUS :: " + status);
-                       $( '#submitGH' ).animate( {backgroundColor: "#f42"}, 400);
-                       $( '#submitGH' ).text('<i class="fa fa-thumbs-down"></i> Errore :: ' + message);
+                             + message + "\nSTATUS :: " + status);
+                       $( '#submitGH' ).css({backgroundColor: "#f42"});
+                       $( '#submitGH' ).text('Errore :: ' + message);
                    },
                    function(message,status) {
                        alert("Impossibile raggiungere il server.\nSTATUS :: " 
                              + status + "\nERRORE :: " + message);
-                       $( '#submitGH' ).animate( {backgroundColor: "#f42"}, 400);
-                       $( '#submitGH' ).text('<i class="fa fa-thumbs-down"></i> Server non raggiunto!?');
+                       $( '#submitGH' ).css({backgroundColor: "#f42"});
+                       $( '#submitGH' ).text('Server non raggiunto!?');
                    });              
+    }
+}
+
+function deleteBtnClick() {
+    var path;
+    if (settings.folder) {
+        path = settings.folder + '/';
+    } else {
+        path = '';
+    }
+    path += settings.edit;
+    if (checkFunction(false) === "OK") {
+        if (confirm("Sicuro di voler eliminare il post?\n " + path + "\nQuesta operazione è (quasi) irreversibile!")) {
+
+        deleteContent($('#username').val(), $('#password').val(), path, $('#shasum').text(), 
+                       function(result) {
+                           alert("Eliminato!");
+                           window.history.back;
+                       },
+                       function(message, status){
+                           alert("Impossibile eliminare la risorsa, il server ha ritornato un errore.\nERRORE :: " 
+                                 + message + "\nSTATUS :: " + status + "\n\nRitorno alla pagina precedente!");
+                           window.history.back();
+                       },
+                       function(message,status) {
+                           alert("Impossibile raggiungere il server.\nSTATUS :: " 
+                                 + status + "\nERRORE :: " + message + "\n\nRitorno alla pagina precedente");
+                           window.history.back();
+                       });
+        }
     }
 }

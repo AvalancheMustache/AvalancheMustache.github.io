@@ -111,3 +111,13 @@
     color: #fff;
     font-size: 16px;
 }
+
+#deleteGH {
+    background-color: #f24;
+    border: 0px;
+    border-radius: 5px;
+    width: 10%;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
