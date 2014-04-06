@@ -3,7 +3,7 @@ layout: default
 ---
 <h1 class="post-title">{{ page.title }}</h1>
 <p class="meta">
-    {{ page.date | date_to_string }} - Scritto da {{ page.author }}     
+    <i class="fa fa-calendar"></i> {{ page.date | date_to_string }} - <i class="fa fa-user"></i> {{ page.author }}     
     :: 
     {% for tag in page.categories %}
        <span class="label label-default">{{ tag }}</span> 
@@ -44,6 +44,13 @@ layout: default
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<hr>
+<div class="edit-post">
+    <a href="/editor/editor.html?edit={{ page.title }}&folder=_posts" class="add-post" title="Modifica questo post">
+       <i class="fa fa-edit"></i>
+    </a>
 </div>
 
 {% endif %}
