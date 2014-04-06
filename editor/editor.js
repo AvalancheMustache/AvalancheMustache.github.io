@@ -80,7 +80,6 @@ $( document ).ready( function() {
 
         $( '#layout' ).attr('value',layout);
         $( '#date-complete' ).attr('value',post_date);
-        $( '#date-complete' ).attr('value',post_date);
         $( '#comment_id' ).attr('value', comment_id);
         $( '#author' ).attr('value', '');
         $( '#file-name' ).attr('value', '');
@@ -105,6 +104,26 @@ $( document ).ready( function() {
                    });
     }
 });
+
+function frontMatter() {
+    return  '---' + '\n' +
+            'layout: ' + $('#layout').val() + '\n' + 
+            'title: ' + $('#title').val() + '\n' +
+            'date: ' + $('#date-complete').val() + '\n' +
+            'categories: ' + $('#tags').val() + '\n' +
+            'author: ' + $('#username').val() + '\n' +
+            'comments: ' + ( $('#id_chk_comments').is(':checked') == true ? 'true' : 'false' ) + '\n' +
+            'commment_id:' + $('#comment_id').val() + '\n' +
+            '---';
+}
+
+function generatePost() {
+    if (settings.edit != "new"){
+        return $('#post-text').val();
+    } else {
+        return frontMatter() + '\n\n' + $('#post-text').val() + '\n\n';
+    }
+}
 
 function checkFunction() {
     var check = "OK";
@@ -132,13 +151,20 @@ function checkFunction() {
 function postBtnClick() {
     //putContent($('#username').val(), $('#password').val(), getURI().edit, 'post-text', 'shasum', 'submitGH')
     if (checkFunction() === "OK") {
+        var path;
         if (settings.folder) {
-            var path = settings.folder + '/' + settings.edit;
+            path = settings.folder + '/';
         } else {
-            var path = settings.edit;
+            path = '';
+        }
+        if (settings.edit === "new") {
+            path += $('#file-name').val();
+        } else {
+            path += settings.edit;
         }
         
-        putContent($('#username').val(), $('#password').val(), path, $('#shasum').text(), 
+        
+        putContent($('#username').val(), $('#password').val(), path, generatePost(), $('#shasum').text(), 
                    function(result) {
                        $( '#shasum' ).text( result.sha );
                        $( '#submitGH' ).animate( {backgroundColor: "#2f4"}, 400);
