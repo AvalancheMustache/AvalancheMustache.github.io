@@ -26,7 +26,20 @@
 .input-text[placeholder] {
     color: #eee;
 }
-    
+
+.input-text-disabled {
+    color: #000;
+    width: 30%;
+}
+
+.shasumcl {
+    color: #000;
+}
+ 
+.input-text-disabled:hover {
+    box-shadow: none;
+}
+
 .chk-label {
     background-color: #444;
     border: 1px solid #111;
@@ -86,10 +99,11 @@
     font-family: "Source Code Pro", Menlo, Monaco, Consolas, "Courier New", monospace;
     width: 90%;
     height: 400px;
+    line-height: normal;
 }
 
 #submitGH {
-    background-color: #226eff;
+    background-color: #24f;
     border: 0px;
     border-radius: 5px;
     width: 30%;

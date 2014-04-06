@@ -1,85 +1,88 @@
-/* ITHUB API IMPLEMENTATION */
+/* GITHUB API IMPLEMENTATION */
+
+/* Todo:
+ * - eliminare tutti i riferimenti a ciò che appare sulla mia pagina
+ * - passare funzioni invece che nomi di oggetti
+ * - on success e on error devono essere delle funzioni e non degli elementi html!
+ */
 
 // Global configurations
-var reponame = "ApiTestingRepo";
-var ownername = "MatteoRagni";
-var github_api = "https://api.github.com";
+const reponame = "ApiTestingRepo";
+const ownername = "MatteoRagni";
 
-function authentication(username, password) {
-    'use strict';
-    
-    var request = new XMLHttpRequest();
-    request.open("GET", github_api, true, username, password);
-    
-    request.send();
-    // Testing purpose
-    console.clear();
-    request.onreadystatechange = function() {
-        if (request.readyState == 4) {
-            console.log(request.responseText);
-            console.log(request.status);
-        }
-    }
+// Api configuration
+const github_api = "https://api.github.com";
+const api_version = 'application/vnd.github.v3+json';
+
+function basicAuth(usr, pass) {
+    return "Basic " + btoa(usr + ':' + pass);
 }
 
-function getContent(username, password, path) {
-    'use strict';
+function getContent(path, textarea, shaarea) {
     
-    var request = new XMLHttpRequest();
-    if (username == null) {
-        request.open("GET", github_api + '/repos/' + ownername + '/' + reponame + '/contents/' + path, true);
-    } else {
-        request.open("GET", github_api + '/repos/' + ownername + '/' + reponame + '/contents/' + path, true, username, password);
-    }
+    var apipos = github_api + '/repos/' + ownername + '/' + reponame + '/contents/' + path;
     
-    request.send();
-    // Testing purpose
-    console.clear();
-    request.onreadystatechange = function() {
-        if (request.readyState == 4) {
-            //console.log(request.responseText);
-            //console.log(request.status);
-            var response = JSON.parse(request.responseText);
-            console.log(response.content);
-            console.log(atob(response.content));
-        }
-    }
-}
-
-function getContentRaw(username, password, path) {
-    'use strict';
-    
-    var request = new XMLHttpRequest();
-    if (username == null) {
-        request.open("GET", github_api + '/repos/' + ownername + '/' + reponame + '/contents/' + path, true);
-    } else {
-        request.open("GET", github_api + '/repos/' + ownername + '/' + reponame + '/contents/' + path, true, username, password);
-    }
-    request.setRequestHeader("Accept","application/vnd.github.beta.raw");
-    
-    request.send();
-    // Testing purpose
-    console.clear();
-    request.onreadystatechange = function() {
-        if (request.readyState == 4) {
-            if (request.status == 200) {
-                return request.responseText;
+    $.ajax( {
+        crossDomain: true,
+        url: apipos,
+        type: "GET",
+        dataType: "json",
+        headers: { 'Accept': api_version },
+        success: function(result,status) {
+            if (status === "success") {
+                $('#' + textarea).val(atob(result.content));
+                $('#' + shaarea).text(result.sha);
             } else {
-                return "Stato della richiesta: " + request.status + " -- FALLITA";
-            }
+                $('#' + textarea).val("Error: " + status + "\n\n" + result);
+                $('#' + shaarea).text("");
+            }            
         }
-    }
-    console.log(request.status);
-    console.log(request.responseText);
+    } );
 }
 
-function putContent(username, password, mail, path, text) {
-    'use strict';
+function putContent(usr, psw, path, textarea, shaarea, btn) {
     
-    var request = new XMLHttpRequest();
-    request.open("PUT", github_api + '/repos/' + ownername + '/' + reponame + '/contents/' + path, true, username, password);
-    var content = btoa(text);
-    
-    //request.send('{ "message": "Test di un commit js", "committer": "' + username'}');
-
+    // Generazione della posizione dei file da modificare
+    var apipos = github_api + '/repos/' + ownername + '/' + reponame + '/contents/' + path;
+    // ncoding del contenuto
+    var content = btoa($('#' + textarea).val());
+        
+    // Se il valore di shaarea è vuoto, il file non esiste. Quindi dobbiamo crearlo
+    // Se il valore di shaarea esiste, non dobbiamo creare il file, ma aggiornare quello esistente.
+    if ($('#' + shaarea).text() === "") { 
+        var datamsg = '{ "message": ' + '"Creating ' + path +'", "content": "' + content + '"}';
+    } else { 
+        var datamsg = '{ "message": ' + '"Updating ' + path +'", "content": "' + content + '", "sha": "' + $('#' + shaarea).text() + '"}';
+    }
+    console.log(datamsg);
+        
+    $.ajax( {
+        crossDomain: true,
+        url: apipos,
+        type: "PUT",
+        dataType: "text",
+        data: datamsg,    
+        headers: {
+            'Accept': api_version,
+            'Authorization': basicAuth(usr, psw)
+        },
+        success: function(result, status) {
+            if (status === "success") {
+                $('#' + btn).css({'background-color': '#2f4'});
+                $('#' + btn).text('Ritorna all home page');
+                $('#' + btn).attr('onclick','/');
+                $('#' + shaarea).text(result.sha);
+                console.log(result);
+            } else {
+                var response = JSON.parse(result);
+                $('#' + btn).css({'background-color': '#f24'});
+                $('#' + btn).text(response.message);
+                console.log(result);
+            }
+        },
+        error: function(jqxhr, status, htmlerror) {
+            $('#' + btn).css({'background-color': '#f24'});
+            $('#' + btn).text(htmlerror);
+        }                      
+    });
 }

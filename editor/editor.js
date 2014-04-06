@@ -85,11 +85,7 @@ $( document ).ready( function() {
         $( '#file-name' ).attr('value', '');
     } else {    // Se nell'url c'è ?edit=nomedelpost.markdown elimina tutto il form di frontmatter
         $( '.front-matter' ).remove();
-        $( '#post-text' ).val( getContentRaw(null,null,settings.edit) );
+        getContent(settings.edit,"post-text", "shasum");
     }
-    
-    
-    
-    
 });
     

@@ -31,7 +31,7 @@ title: Editor
         
         {% include editing_box.html %}
         
-        <textarea id="post-text" class="input-text" placeholder="Inserisci qui il testo del post in markdown"></textarea>
+        <textarea id="post-text" class="input-text" placeholder="Inserisci qui il testo del post in markdown"></textarea><br>
         
         <!-- HIDDEN ELEMENTS -->
         <input type="text" id="layout" hidden="true">
@@ -40,8 +40,13 @@ title: Editor
         <input type="text" id="comment_id" hidden="true">
         <input type="text" id="file-name" hidden="true">
         
+        
         <hr>
-        <button id="submitGH" type="button"><i class="fa fa-check-circle-o"></i> Invia Post</button>
+        <label class="input-text">SHASUM :: <label class="shasumcl" id="shasum"></label></label>
+        <button id="submitGH" type="button" 
+            onclick="putContent($('#username').val(), $('#password').val(), getURI().edit, 'post-text', 'shasum', 'submitGH')">
+            <i class="fa fa-check-circle-o"></i> Invia Post
+        </button>
         
         <h3></h3>
     </form>
