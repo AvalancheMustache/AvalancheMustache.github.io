@@ -84,6 +84,7 @@ $( document ).ready( function() {
         $( '#comment_id' ).attr('value', comment_id);
         $( '#author' ).attr('value', '');
         $( '#file-name' ).attr('value', '');
+        
     } else {    // Se nell'url c'è ?edit=nomedelpost.markdown elimina tutto il form di frontmatter
         $( '.front-matter' ).remove();
         
@@ -104,11 +105,56 @@ $( document ).ready( function() {
                    });
     }
 });
+
+function checkFunction() {
+    var check = "OK";
+    if ($('#username').val() === "") {
+        $('#username').focus();
+        $( '#submitGH' ).animate( {backgroundColor: "#ff2"}, 400);
+        $( '#submitGH' ).text('<i class="fa fa-user"></i> Inserire Username!');
+        check = "username";
+    }
+    if ($('#password').val() === "") {
+        $('#password').focus();
+        $( '#submitGH' ).animate( {backgroundColor: "#ff2"}, 400);
+        $( '#submitGH' ).text('<i class="fa fa-unlock-alt"></i> Inserire Password!');
+        check = "password";
+    }
+    if ($('#title').val() === "") {
+        $('#title').focus();
+        $( '#submitGH' ).animate( {backgroundColor: "#ff2"}, 400);
+        $( '#submitGH' ).text('<i class="fa fa-book"></i> Definire un titolo!');
+        check = "title";
+    }
+    return check;
+}
     
 function postBtnClick() {
     //putContent($('#username').val(), $('#password').val(), getURI().edit, 'post-text', 'shasum', 'submitGH')
     if (checkFunction() === "OK") {
-        putContent($('#username').val(), $('#password').val())
+        if (settings.folder) {
+            var path = settings.folder + '/' + settings.edit;
+        } else {
+            var path = settings.edit;
+        }
+        
+        putContent($('#username').val(), $('#password').val(), path, $('#shasum').text(), 
+                   function(result) {
+                       $( '#shasum' ).text( result.sha );
+                       $( '#submitGH' ).animate( {backgroundColor: "#2f4"}, 400);
+                       $( '#submitGH' ).text('<i class="fa fa-thumbs-up"></i> Operazione completata');
+                   },
+                    function(message, status){
+                       alert("Impossibile leggere la risorsa, il server ha ritornato un errore.\nERRORE :: " 
+                             + message.message + "\nSTATUS :: " + status);
+                       $( '#submitGH' ).animate( {backgroundColor: "#f42"}, 400);
+                       $( '#submitGH' ).text('<i class="fa fa-thumbs-down"></i> Errore :: ' + message);
+                   },
+                   function(message,status) {
+                       alert("Impossibile raggiungere il server.\nSTATUS :: " 
+                             + status + "\nERRORE :: " + message);
+                       $( '#submitGH' ).animate( {backgroundColor: "#f42"}, 400);
+                       $( '#submitGH' ).text('<i class="fa fa-thumbs-down"></i> Server non raggiunto!?');
+                   });              
     }
-    
 }

@@ -72,7 +72,7 @@ function putContent(usr, psw, path, content, sha, succ_200, succ_err, err_fnc) {
             if (status === "success") {
                 succ_200(jsonresult);   
             } else {
-                succ_err(jsonresult, status);
+                succ_err(jsonresult.message, status);
             }
         },
         error: function(jqxhr, status, htmlerror) {
