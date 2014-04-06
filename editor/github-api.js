@@ -7,19 +7,20 @@
  */
 
 // Global configurations
-const reponame = "ApiTestingRepo";
-const ownername = "MatteoRagni";
+var reponame = "ApiTestingRepo";
+var ownername = "MatteoRagni";
 
 // Api configuration
-const github_api = "https://api.github.com";
-const api_version = 'application/vnd.github.v3+json';
+var github_api = "https://api.github.com";
+var api_version = 'application/vnd.github.v3+json';
 
+// Implementation
 function basicAuth(usr, pass) {
     return "Basic " + btoa(usr + ':' + pass);
 }
 
-function getContent(path, textarea, shaarea) {
-    
+function getContent(path, succ_200, succ_err, err_fnc) {
+    // Creating position for the file to be read
     var apipos = github_api + '/repos/' + ownername + '/' + reponame + '/contents/' + path;
     
     $.ajax( {
@@ -30,29 +31,29 @@ function getContent(path, textarea, shaarea) {
         headers: { 'Accept': api_version },
         success: function(result,status) {
             if (status === "success") {
-                $('#' + textarea).val(atob(result.content));
-                $('#' + shaarea).text(result.sha);
+                succ_200(atob(result.content), result.sha);
             } else {
-                $('#' + textarea).val("Error: " + status + "\n\n" + result);
-                $('#' + shaarea).text("");
+                succ_err(result.message, status);
             }            
+        },
+        error: function(jqxhr, status, htmlerror) {
+            err_fnc(htmlerror, status);
         }
     } );
 }
 
-function putContent(usr, psw, path, textarea, shaarea, btn) {
-    
-    // Generazione della posizione dei file da modificare
+function putContent(usr, psw, path, content, sha, succ_200, succ_err, err_fnc) {
+    // Creating position for the file to be edited/created
     var apipos = github_api + '/repos/' + ownername + '/' + reponame + '/contents/' + path;
-    // ncoding del contenuto
-    var content = btoa($('#' + textarea).val());
+    // Content encoding
+    var content = btoa(content);
         
-    // Se il valore di shaarea è vuoto, il file non esiste. Quindi dobbiamo crearlo
-    // Se il valore di shaarea esiste, non dobbiamo creare il file, ma aggiornare quello esistente.
-    if ($('#' + shaarea).text() === "") { 
+    // If we do not have a sha value, this means that we have to create the file.
+    // If we have the file, we should update it.
+    if (sha === "") { 
         var datamsg = '{ "message": ' + '"Creating ' + path +'", "content": "' + content + '"}';
     } else { 
-        var datamsg = '{ "message": ' + '"Updating ' + path +'", "content": "' + content + '", "sha": "' + $('#' + shaarea).text() + '"}';
+        var datamsg = '{ "message": ' + '"Updating ' + path +'", "content": "' + content + '", "sha": "' + sha + '"}';
     }
     console.log(datamsg);
         
@@ -67,22 +68,15 @@ function putContent(usr, psw, path, textarea, shaarea, btn) {
             'Authorization': basicAuth(usr, psw)
         },
         success: function(result, status) {
+            var jsonresult = JSON.parse(result);
             if (status === "success") {
-                $('#' + btn).css({'background-color': '#2f4'});
-                $('#' + btn).text('Ritorna all home page');
-                $('#' + btn).attr('onclick','/');
-                $('#' + shaarea).text(result.sha);
-                console.log(result);
+                succ_200(jsonresult);   
             } else {
-                var response = JSON.parse(result);
-                $('#' + btn).css({'background-color': '#f24'});
-                $('#' + btn).text(response.message);
-                console.log(result);
+                succ_err(jsonresult, status);
             }
         },
         error: function(jqxhr, status, htmlerror) {
-            $('#' + btn).css({'background-color': '#f24'});
-            $('#' + btn).text(htmlerror);
+            err_fnc(htmlerror, status);
         }                      
     });
 }

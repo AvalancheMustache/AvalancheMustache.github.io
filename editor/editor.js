@@ -3,6 +3,7 @@
 /**** Funzioni di impostazione del form ****/
 
 var dataobj = new Date();
+var settings;
 
 // Sistemazione del form al caricamento e al click:    
 // Questa funzione si occupa del colllegamento tra checkbox e label (un style in più diciamo)
@@ -68,7 +69,7 @@ function editFileName() {
 // DOCUMENT SETTINGS
 
 $( document ).ready( function() { 
-    var settings = getURI();
+    settings = getURI();
     
     
     if (settings.edit === "new") {  // Se nell'url c'è un nuovo post ?edit=new
@@ -85,7 +86,29 @@ $( document ).ready( function() {
         $( '#file-name' ).attr('value', '');
     } else {    // Se nell'url c'è ?edit=nomedelpost.markdown elimina tutto il form di frontmatter
         $( '.front-matter' ).remove();
-        getContent(settings.edit,"post-text", "shasum");
+        
+        getContent(settings.edit, 
+                   function(content, sha){
+                       $( '#post-text' ).val(content);
+                       $( '#shasum' ).text(sha);
+                   },
+                   function(message, status){
+                       alert("Impossibile leggere la risorsa, il server ha ritornato un errore.\nERRORE :: " 
+                             + message + "\nSTATUS :: " + status + "\n\nRitorno alla pagina precedente!");
+                       window.history.back();
+                   },
+                   function(message,status) {
+                       alert("Impossibile raggiungere il server.\nSTATUS :: " 
+                             + status + "\nERRORE :: " + message + "\n\nRitorno alla pagina precedente");
+                       window.history.back();
+                   });
     }
 });
     
+function postBtnClick() {
+    //putContent($('#username').val(), $('#password').val(), getURI().edit, 'post-text', 'shasum', 'submitGH')
+    if (checkFunction() === "OK") {
+        putContent($('#username').val(), $('#password').val())
+    }
+    
+}
