@@ -95,8 +95,8 @@ $( document ).ready( function() {
     } else {    // Se nell'url c'è ?edit=nomedelpost.markdown elimina tutto il form di frontmatter
         $( '.front-matter' ).remove();
         
-        var path;
-        path += '' + folder + settings.edit;
+        var path = folder;
+        path += settings.edit;
         
         getContent(path, 
                    function(content, sha){
