@@ -4,7 +4,7 @@
 
 var dataobj = new Date();
 var settings;
-var folder = '_posts/'
+var folder = '_posts/';
 
 var TOCstring = '# Contenuti\n' +
                 '{:.no_toc}\n\n' +
