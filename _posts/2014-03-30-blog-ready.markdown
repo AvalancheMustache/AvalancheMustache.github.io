@@ -6,6 +6,7 @@ categories: jekyll blog
 author: "Matteo Ragni"
 comments: true
 comment_id: "20140330213300"
+file: 2014-03-30-blog-ready.markdown
 ---
 
 Con questo post, si conferma la fine dello sviluppo del blog, **che diventa a tutti gli effetti operativo**.

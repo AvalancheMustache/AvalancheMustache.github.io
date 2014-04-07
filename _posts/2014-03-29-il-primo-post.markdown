@@ -6,6 +6,7 @@ categories: jekyll welcome latex code
 author: "Matteo Ragni"
 comments: true
 comment_id: "20140329105000"
+file: 2014-03-29-il-primo-post.markdown
 ---
 
 # Benvenuto

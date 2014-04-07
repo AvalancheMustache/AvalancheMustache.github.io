@@ -6,6 +6,7 @@ categories: soccorritori form qfd indagine
 author: "Matteo Ragni"
 comments: true
 comment_id: "20140401120000"
+file: 2014-04-01-domande-ai-soccorritori.markdown
 ---
 
 ## Domandiamo a voi...

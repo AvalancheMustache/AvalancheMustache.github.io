@@ -6,6 +6,7 @@ categories: jekyll blog
 author: "Matteo Ragni"
 comments: true
 comment_id: "20140329170000"
+file: 2014-03-29-come-postare.markdown
 ---
 
 # Contenuti
@@ -32,6 +33,7 @@ categories: jekyll blog git
 author: "Matteo Ragni"
 comments: true
 comment_id: "20140329170000"
+file: 2014-03-29-come-postare.markdown
 ---
 {% endhighlight %}
 Analizziamo le singole variabili:
@@ -43,6 +45,7 @@ Analizziamo le singole variabili:
  * `author`: l'autore del post.
  * `comments`: questa variabile abilita i commenti in fondo al post.
  * `comment_id`: per poter discriminare le diverse conversazioni, si utilizza un codice identificativo; per convenzione il codice identificativo è caratterizzato dalla data e l'ora del post senza punteggiatura.
+ * `file`: il nome del file markdown.
  
 Un post senza front-matter non è interpretato e non genera nessuna pagina nel blog.
  

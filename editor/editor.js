@@ -121,6 +121,7 @@ function frontMatter() {
             'author: ' + $('#username').val() + '\n' +
             'comments: ' + ( $('#id_chk_comments').is(':checked') == true ? 'true' : 'false' ) + '\n' +
             'commment_id:' + $('#comment_id').val() + '\n' +
+            'file:' + $('#file-name').val() + '\n' +
             '---';
 }
 
