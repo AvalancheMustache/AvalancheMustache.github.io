@@ -4,6 +4,7 @@
 
 var dataobj = new Date();
 var settings;
+var folder = '_posts'
 
 var TOCstring = '# Contenuti\n' +
                 '{:.no_toc}\n\n' +
@@ -164,8 +165,8 @@ function postBtnClick() {
     //putContent($('#username').val(), $('#password').val(), getURI().edit, 'post-text', 'shasum', 'submitGH')
     if (checkFunction(true) === "OK") {
         var path;
-        if (settings.folder) {
-            path = settings.folder + '/';
+        if (folder != "") {
+            path = folder + '/';
         } else {
             path = '';
         }
@@ -199,8 +200,8 @@ function postBtnClick() {
 
 function deleteBtnClick() {
     var path;
-    if (settings.folder) {
-        path = settings.folder + '/';
+    if (folder) {
+        path = folder + '/';
     } else {
         path = '';
     }
