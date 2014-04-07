@@ -7,8 +7,8 @@
  */
 
 // Global configurations
-var reponame = "ApiTestingRepo";
-var ownername = "MatteoRagni";
+var reponame = "AvalancheMustache.github.io";
+var ownername = "AvalancheMustache";
 
 // Api configuration
 var github_api = "https://api.github.com";
