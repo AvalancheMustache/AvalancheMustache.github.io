@@ -162,7 +162,7 @@ function checkFunction(type) {
 }
     
 function postBtnClick() {
-    //putContent($('#username').val(), $('#password').val(), getURI().edit, 'post-text', 'shasum', 'submitGH')
+    
     if (checkFunction(true) === "OK") {
         var path;
         if (folder != "") {
@@ -175,7 +175,7 @@ function postBtnClick() {
         } else {
             path += settings.edit;
         }
-        
+        console.log(path);
         
         putContent($('#username').val(), $('#password').val(), path, generatePost(), $('#shasum').text(), 
                    function(result) {
