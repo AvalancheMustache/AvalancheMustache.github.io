@@ -95,7 +95,15 @@ $( document ).ready( function() {
     } else {    // Se nell'url c'è ?edit=nomedelpost.markdown elimina tutto il form di frontmatter
         $( '.front-matter' ).remove();
         
-        getContent(settings.edit, 
+        var path;
+        if (settings.folder != "") {
+            path = settings.folder + '/';
+        } else {
+            path = '';
+        }
+        path += settings.edit;
+        
+        getContent(path, 
                    function(content, sha){
                        $( '#post-text' ).val(content);
                        $( '#shasum' ).text(sha);
@@ -165,8 +173,8 @@ function postBtnClick() {
     
     if (checkFunction(true) === "OK") {
         var path;
-        if (folder != "") {
-            path = folder + '/';
+        if (settings.folder != "") {
+            path = settings.folder + '/';
         } else {
             path = '';
         }
@@ -175,7 +183,6 @@ function postBtnClick() {
         } else {
             path += settings.edit;
         }
-        console.log(path);
         
         putContent($('#username').val(), $('#password').val(), path, generatePost(), $('#shasum').text(), 
                    function(result) {
