@@ -17,6 +17,8 @@ file: 2014-03-29-come-postare.markdown
  
 # Come è strutturato il post
 
+**EDIT: D'ORA IN AVANTI � POSSIBILE UTILIZZARE L'EDITOR INSERITO NEL SITO, SIA PER L'AGGIUNTA CHE PER LA MODIFICHE DEI POSTS**
+
 Il post è un documento in markdown slavato nella direcotry `_post`. Per poter salvare il file nella directory è necessario utilizzare `git` come interfaccia al post.
 
 Un nuovo post deve essere salvato secondo la convenzione `YYYY-MM-DD-titolo-del-post.markdown`, in modo tale che possa essere ordinato nella pagina iniziale del blog. All'interno del file troviamo due sezioni: il front-matter e il corpo del post.
