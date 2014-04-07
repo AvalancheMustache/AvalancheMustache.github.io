@@ -4,7 +4,7 @@
 
 var dataobj = new Date();
 var settings;
-var folder = '_posts'
+var folder = '_posts/'
 
 var TOCstring = '# Contenuti\n' +
                 '{:.no_toc}\n\n' +
@@ -96,12 +96,7 @@ $( document ).ready( function() {
         $( '.front-matter' ).remove();
         
         var path;
-        if (settings.folder != "") {
-            path = settings.folder + '/';
-        } else {
-            path = '';
-        }
-        path += settings.edit;
+        path += '' + folder + settings.edit;
         
         getContent(path, 
                    function(content, sha){
@@ -172,12 +167,7 @@ function checkFunction(type) {
 function postBtnClick() {
     
     if (checkFunction(true) === "OK") {
-        var path;
-        if (settings.folder != "") {
-            path = settings.folder + '/';
-        } else {
-            path = '';
-        }
+        var path = folder;
         if (settings.edit === "new") {
             path += $('#file-name').val();
         } else {
@@ -206,12 +196,8 @@ function postBtnClick() {
 }
 
 function deleteBtnClick() {
-    var path;
-    if (folder) {
-        path = folder + '/';
-    } else {
-        path = '';
-    }
+    var path = folder;
+    
     path += settings.edit;
     if (checkFunction(false) === "OK") {
         if (confirm("Sicuro di voler eliminare il post?\n " + path + "\nQuesta operazione è (quasi) irreversibile!")) {
