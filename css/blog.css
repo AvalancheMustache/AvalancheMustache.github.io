@@ -26,6 +26,7 @@ body {
     background-size: 100px;
     border-radius: 30px;
     box-shadow: inset 0px 0px 10px 5px #111;
+    text-align: justify;
 }
 
 .navbar-text, .navbar-brand {
@@ -244,4 +245,33 @@ code, pre {
 
 .post-info:hover {
     color: #fff;
+}
+
+/* PRINTING */
+
+@media print {
+    .footer, .edit-post, .comments, .sharing {
+        display: none !important;
+    }
+
+    table {
+        border-width: 1px;
+        border-spacing: 2px;
+        border-style: outset;
+        border-color: gray;
+        border-collapse: collapse;
+    }
+    table th {
+        border-width: 1px;
+        padding: 5px;
+        border-style: inset;
+        border-color: gray;
+    }
+    table td {
+        border-width: 1px;
+        padding: 5px;
+        border-style: inset;
+        border-color: gray;
+    }
+
 }

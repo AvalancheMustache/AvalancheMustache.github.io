@@ -53,7 +53,13 @@ La sezione di codice si chiude con la direttiva `endhiglight`.
 
 ### Inserire dei link o delle immagini
 
-Per inserire dei link o delle immagini si fa riferimento alla direttiva classica di `Markdown` per i link e i contenuti multimediali. Le immagini che devono essere rimensionate possono essere inserite sfruttando semplicemente del codice `HTML`, prima di caricarle sul sito!
+**EDIT: DA ADESSO È POSSIBILE INSERIRE LE IMMAGINI SOLAMENTE CON LA DIRETTIVA**
+{% highlight HTML linenos %}
+<img src="/assets/nome_immagine.ext" style="width: 50%">
+{% endhighlight %}
+**L'INSERIMENTO DEL CODICE DI RIDIMENSIONAMENTO È AUTOMATICO**
+
+Per inserire dei link si fa riferimento alla direttiva classica di `Markdown`. Le immagini che devono essere rimensionate possono essere inserite sfruttando semplicemente del codice `HTML`, prima di caricarle sul sito!
 
 {% highlight HTML linenos %}
 <img src="/assets/nome_immagine.ext" alt="descrizione" onclick="imageZoom(this, '50%')" style="width: 50%">

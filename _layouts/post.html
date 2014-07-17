@@ -53,4 +53,15 @@ layout: default
     </a>
 </div>
 
+<script>
+$( document ).ready( function() {
+
+    $('img').each( function() {
+        $(this).attr('onclick', 'imageZoom(this, "' + $(this).width() +'px")');
+    });
+    
+
+});
+</script>
+
 {% endif %}
