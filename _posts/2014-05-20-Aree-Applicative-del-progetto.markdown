@@ -54,7 +54,7 @@ table tbody tr:nth-child(even) {
 
 ### QFD
 
-<img src="assets/aree_app/qfd.png">
+<img src="/assets/aree_app/qfd.png">
 
 ### Geometria del dardo e sistema di rilascio del dardo
 
@@ -119,7 +119,7 @@ $$u = m |(\mu\left(\chi,\ddot{\xi}\_{d}\right)+g\,e\_{3}^{i}| = m\,|-K\_{\chi}\,
 $$ \tau=J\,\Psi(\eta)\,\tilde{\tau}+\Psi^{-1}\,C(\eta,\dot{\eta})\,\dot{\eta}=J\,\Psi(\eta)\,(-K_{e}e+\ddot{\eta}_{d})+\Psi^{-1}\,C(\eta,\dot{\eta})\,\dot{\eta} $$
 
 La strategia è basata su un doppio loop, come rappresentato nel seguente schema tratto sempre dallo stesso riferimento:
-<img src="assets/aree_app/AspettiImmagine1.png">
+<img src="/assets/aree_app/AspettiImmagine1.png">
 
 ### Modellazione elettronica spinta
 
@@ -160,8 +160,8 @@ Inoltre si deve tenere conto della matrice di decisione della _radar signal dete
 
 Il segnale in ingresso richiede un filtraggio, del quale si è già fatto un design iniziale che fa uso di un filtro attivo ad opamp:
 
-<img src="assets/aree_app/Schematico_filtro.svg">
-<img src="assets/aree_app/Risultati_filtro.svg">
+<img src="/assets/aree_app/Schematico_filtro.svg">
+<img src="/assets/aree_app/Risultati_filtro.svg">
 
 Un possibile sistema di ricezione, basato su quanto scritto sulla normativa del segnale ARTVA [\[2\]](#riferimenti):
  * modulazione di tipo **A1A**
@@ -176,7 +176,7 @@ Un possibile sistema di ricezione, basato su quanto scritto sulla normativa del 
 
 potrebbe essere il seguente:
 
-<img src="assets/aree_app/Ricevente.svg">
+<img src="/assets/aree_app/Ricevente.svg">
 
 (del quale non ci sono ancora simulazioni, non esistendo una libreria per il modello MK484 o TA7642 da inserire in Spice)
 
