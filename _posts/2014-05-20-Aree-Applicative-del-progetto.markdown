@@ -125,8 +125,8 @@ La strategia è basata su un doppio loop, come rappresentato nel seguente schema
 
 In questa sezione si fa la modellazione di tutto il sistema di propulsione, completo di motore. Si cerca di modellare la funzione:
 
-$$F = F(I) $$
-$$M = M(I) $$ 
+$$F=F(I)$$
+$$M=M(I)$$ 
 
 ovvero la forza impressa e la coppia di drag del motore sul frame in funzione della corrente.
 
